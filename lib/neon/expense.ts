@@ -7,7 +7,7 @@ export const expenseByYear = async () => {
     const result = await db
       .select({
         fiscalYear: expense.fiscal_year,
-        totalIncome: sql<number>`SUM(${expense.adopted_budget})`, // Use `sql` helper
+        totalExpenses: sql<number>`SUM(${expense.adopted_budget})`, // Use `sql` helper
       })
       .from(expense)
       .groupBy(expense.fiscal_year)
