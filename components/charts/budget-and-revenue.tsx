@@ -22,18 +22,16 @@ export default function BudgetRevenueLineChart() {
   }, []);
 
   const valueFormatter = (number: number) =>
-    `${Intl.NumberFormat("us")
-      .format(number / 1000000)
-      .toString()} M`;
+    `${(number / 1000000).toString()} M`;
 
   return (
     <LineChart
       data={data}
-      index="year" // Use fiscalYear for the x-axis
-      categories={["income"]} // Use totalIncome for the y-axis
-      colors={["blue"]} // Set color to blue for the totalIncome line
-      showLegend={true} // Show legend to indicate the data series
-      className="px-8 font-mono" // Styling class
+      index="year"
+      categories={["income"]}
+      colors={["green"]}
+      showLegend={true}
+      className="px-1 sm:px-8 font-mono"
       valueFormatter={valueFormatter}
     />
   );
