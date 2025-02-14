@@ -25,9 +25,21 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable} antialiased min-h-screen flex flex-col`}
       >
-        {children}
+        <div className="flex flex-1 h-full">{children}</div>
+        <div className="w-full flex justify-center items-center">
+          <p>
+            made with ❤️ by{" "}
+            <a
+              href="https://www.parisosuch.com"
+              target="_blank"
+              className="underline"
+            >
+              parisosuch.com
+            </a>
+          </p>
+        </div>
       </body>
     </html>
   );

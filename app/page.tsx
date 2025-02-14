@@ -3,7 +3,7 @@ import { Card } from "@tremor/react";
 
 export default async function Home() {
   return (
-    <div className="min-h-screen w-full flex flex-col items-center justify-center">
+    <div className="w-full flex flex-col items-center justify-center">
       <h1 className="text-4xl font-medium font-mono">
         Roseville Open Budget 🌹
       </h1>
