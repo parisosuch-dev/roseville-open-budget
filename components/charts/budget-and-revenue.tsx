@@ -2,16 +2,8 @@
 
 import { useState, useEffect } from "react";
 import { LineChart } from "@tremor/react";
-import { expense } from "@/lib/neon/schema";
 
 export default function BudgetRevenueLineChart() {
-  const [expenseData, setExpenseData] = useState<
-    { year: number; income: number }[]
-  >([]);
-  const [revenueData, setRevenueData] = useState<
-    { year: number; income: number }[]
-  >([]);
-
   const [data, setData] = useState<
     { income: number; expenses: number; year: number }[]
   >([]);
