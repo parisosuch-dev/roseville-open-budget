@@ -35,7 +35,7 @@ export default function BudgetRevenueLineChart() {
       categories={["income"]} // Use totalIncome for the y-axis
       colors={["blue"]} // Set color to blue for the totalIncome line
       showLegend={true} // Show legend to indicate the data series
-      className="px-8" // Styling class
+      className="px-8 font-mono" // Styling class
       valueFormatter={valueFormatter}
     />
   );
