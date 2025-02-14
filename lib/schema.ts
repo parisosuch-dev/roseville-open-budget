@@ -1,6 +1,6 @@
 import { pgTable, serial, text, numeric, integer } from "drizzle-orm/pg-core";
 
-export const budget = pgTable("Budget", {
+export const budget = pgTable("budget", {
   id: serial("id").primaryKey(),
   fund_category_fund_level: text("fund_category_fund_level"),
   fund_type_fund_level_3: text("fund_type_fund_level_3"),
