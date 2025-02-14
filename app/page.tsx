@@ -7,7 +7,7 @@ export default async function Home() {
       <h1 className="text-2xl sm:text-4xl text-center font-medium font-mono">
         Roseville Open Budget 🌹
       </h1>
-      <Card className="mt-2 sm:mt-6 w-5/6 sm:w-1/3">
+      <Card className="mt-6 sm:mt-12 w-5/6 sm:w-1/3">
         <h2 className="text-lg sm:text-2xl text-center font-medium font-mono">
           Expense vs Revenue By Year (in millions)
         </h2>
