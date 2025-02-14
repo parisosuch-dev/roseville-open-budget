@@ -12,12 +12,10 @@ export default function BudgetRevenueLineChart() {
       const json: { fiscalYear: number; totalIncome: string }[] =
         await res.json();
 
-      let set = json.map((value) => ({
+      const set = json.map((value) => ({
         year: value.fiscalYear,
         income: Number(value.totalIncome),
       }));
-
-      console.log(set);
       setData(set);
     }
     fetchData();
