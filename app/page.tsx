@@ -1,5 +1,5 @@
-import db from "@/lib/db";
-import { expense, revenue } from "@/lib/schema";
+import db from "@/lib/neon/db";
+import { expense, revenue } from "@/lib/neon/schema";
 import { formatNumber } from "@/lib/utils";
 
 export default async function Home() {
