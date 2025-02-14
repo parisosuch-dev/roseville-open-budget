@@ -1,6 +1,6 @@
 import { drizzle } from "drizzle-orm/neon-serverless";
 
-if (!process.env.DATBASE_URL) {
+if (!process.env.DATABASE_URL) {
   throw new Error("DATABASE_URL environment variable required for Neon DB.");
 }
 
