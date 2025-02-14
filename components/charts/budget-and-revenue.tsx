@@ -24,7 +24,9 @@ export default function BudgetRevenueLineChart() {
   }, []);
 
   const valueFormatter = (number: number) =>
-    `${Intl.NumberFormat("us").format(number).toString()}`;
+    `${Intl.NumberFormat("us")
+      .format(number / 1000000)
+      .toString()} M`;
 
   return (
     <LineChart
@@ -33,7 +35,7 @@ export default function BudgetRevenueLineChart() {
       categories={["income"]} // Use totalIncome for the y-axis
       colors={["blue"]} // Set color to blue for the totalIncome line
       showLegend={true} // Show legend to indicate the data series
-      className="h-full w-full px-8" // Styling class
+      className="px-8" // Styling class
       valueFormatter={valueFormatter}
     />
   );
