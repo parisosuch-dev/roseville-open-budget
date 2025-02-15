@@ -3,11 +3,11 @@ import { expenseByFundCategory } from "@/lib/neon/expense";
 
 export async function GET(
   request: Request,
-  { params }: { params: { year: number } }
+  { params }: { params: Promise<{ year: string }> }
 ) {
   const { year } = await params;
 
-  const data = await expenseByFundCategory(year);
+  const data = await expenseByFundCategory(Number(year));
 
   return NextResponse.json(data);
 }
