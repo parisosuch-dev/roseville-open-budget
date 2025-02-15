@@ -23,7 +23,7 @@ export const expenseByYear = async () => {
 export const expenseByFundCategory = async (year?: number) => {
   try {
     if (year) {
-      let result = await db
+      const result = await db
         .select({
           fundCategory: expense.fund_category_fund_level,
           fiscalYear: expense.fiscal_year,
@@ -36,7 +36,7 @@ export const expenseByFundCategory = async (year?: number) => {
 
       return result;
     }
-    let result = await db
+    const result = await db
       .select({
         fundCategory: expense.fund_category_fund_level,
         fiscalYear: expense.fiscal_year,
