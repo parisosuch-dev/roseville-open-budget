@@ -1,6 +1,6 @@
 import { expense } from "./schema";
 import db from "./db";
-import { sql } from "drizzle-orm";
+import { sql, eq } from "drizzle-orm";
 
 export const expenseByYear = async () => {
   try {
@@ -20,9 +20,23 @@ export const expenseByYear = async () => {
   }
 };
 
-export const expenseByFundCategory = async () => {
+export const expenseByFundCategory = async (year?: number) => {
   try {
-    const result = await db
+    if (year) {
+      let result = await db
+        .select({
+          fundCategory: expense.fund_category_fund_level,
+          fiscalYear: expense.fiscal_year,
+          totalExpenses: sql<number>`SUM(${expense.adopted_budget})`,
+        })
+        .from(expense)
+        .where(eq(expense.fiscal_year, year))
+        .groupBy(expense.fund_category_fund_level, expense.fiscal_year)
+        .orderBy(expense.fiscal_year);
+
+      return result;
+    }
+    let result = await db
       .select({
         fundCategory: expense.fund_category_fund_level,
         fiscalYear: expense.fiscal_year,
@@ -31,7 +45,6 @@ export const expenseByFundCategory = async () => {
       .from(expense)
       .groupBy(expense.fund_category_fund_level, expense.fiscal_year)
       .orderBy(expense.fiscal_year);
-
     return result;
   } catch (error) {
     console.error("Error fetching expense by year:", error);
