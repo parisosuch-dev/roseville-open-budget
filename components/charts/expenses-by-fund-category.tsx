@@ -23,15 +23,13 @@ export default function ExpensesByFundCategoryChart() {
         totalExpenses: string;
       }[] = await res.json();
 
-      let set = json.map((value) => ({
+      const set = json.map((value) => ({
         category: value.fundCategory,
         year: value.fiscalYear,
         expenses: Number(value.totalExpenses),
       }));
 
       const sum = set.reduce((sum, item) => sum + item.expenses, 0);
-
-      console.log(sum);
 
       const finalSet = set.map((value) => ({
         category: value.category,
