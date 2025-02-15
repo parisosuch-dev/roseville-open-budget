@@ -5,7 +5,7 @@ export async function GET(
   request: Request,
   { params }: { params: { year: number } }
 ) {
-  const { year } = params;
+  const { year } = await params;
 
   const data = await expenseByFundCategory(year);
 
