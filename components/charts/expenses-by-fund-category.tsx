@@ -24,7 +24,6 @@ export default function ExpensesByFundCategoryChart() {
   const [year, setYear] = useState(new Date().getFullYear().toString());
 
   useEffect(() => {
-    console.log("triggered");
     async function fetchData() {
       // get year meta data
       const yearRes = await fetch("/api/expense/year");
