@@ -1,5 +1,4 @@
 import db from "./db";
-import { sql, eq } from "drizzle-orm";
 import { expense } from "./schema";
 
 export const getExpenseYears = async () => {
@@ -18,11 +17,13 @@ export const getExpenseYears = async () => {
       years.push(r.fiscalYear);
     }
 
-    return {
+    const data = {
       years: years,
     };
+
+    return data;
   } catch (error) {
-    console.error("Error fetching expense by year:", error);
+    console.error("Error fetching expense years:", error);
     throw error;
   }
 };
