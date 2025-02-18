@@ -11,9 +11,9 @@ export const getExpenseYears = async () => {
       .groupBy(expense.fiscal_year)
       .orderBy(expense.fiscal_year);
 
-    let years = [];
+    const years = [];
 
-    for (let r of result) {
+    for (const r of result) {
       years.push(r.fiscalYear);
     }
 
