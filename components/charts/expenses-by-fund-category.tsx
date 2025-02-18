@@ -65,7 +65,7 @@ export default function ExpensesByFundCategoryChart() {
   };
 
   return (
-    <div className="mt-6 flex sm:flex-col flex-col-reverse items-center space-y-2 sm:space-y-0">
+    <div className="mt-6 flex sm:flex-col flex-col-reverse items-center space-y-2 sm:space-y-0 font-mono">
       <div className="w-full flex justify-end">
         <Select onValueChange={(value) => setYear(value)}>
           <SelectTrigger id="size" className="mt-2 w-full sm:w-1/2">
