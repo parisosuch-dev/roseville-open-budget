@@ -18,7 +18,9 @@ export const getExpenseYears = async () => {
       years.push(r.fiscalYear);
     }
 
-    return years;
+    return {
+      years: years,
+    };
   } catch (error) {
     console.error("Error fetching expense by year:", error);
     throw error;
