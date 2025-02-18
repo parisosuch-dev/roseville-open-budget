@@ -20,11 +20,19 @@ export default function ExpensesByFundCategoryChart() {
     }[]
   >([]);
 
-  const [year, setYear] = useState("2024");
+  const [years, setYears] = useState<number[]>([]);
+  const [year, setYear] = useState(new Date().getFullYear().toString());
 
   useEffect(() => {
+    console.log("triggered");
     async function fetchData() {
-      const res = await fetch("/api/expense/by-fund-category/2024");
+      // get year meta data
+      const yearRes = await fetch("/api/expense/year");
+      const yearData: { years: number[] } = await yearRes.json();
+
+      setYears(yearData.years);
+
+      const res = await fetch(`/api/expense/by-fund-category/${year}`);
 
       const json: {
         fundCategory: string;
@@ -60,12 +68,16 @@ export default function ExpensesByFundCategoryChart() {
   return (
     <div className="mt-6 flex sm:flex-col flex-col-reverse items-center space-y-2 sm:space-y-0">
       <div className="w-full flex justify-end">
-        <Select>
+        <Select onValueChange={(value) => setYear(value)}>
           <SelectTrigger id="size" className="mt-2 w-full sm:w-1/2">
             <SelectValue placeholder={year} defaultValue={year} />
           </SelectTrigger>
           <SelectContent>
-            <SelectItem value="2024">2024</SelectItem>
+            {years.map((value) => (
+              <SelectItem key={value} value={value.toString()}>
+                {value}
+              </SelectItem>
+            ))}
           </SelectContent>
         </Select>
       </div>
