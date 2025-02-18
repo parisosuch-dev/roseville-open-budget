@@ -1,6 +1,13 @@
 "use client";
 
 import { DonutChart, List, ListItem } from "@tremor/react";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 import { useEffect, useState } from "react";
 
 export default function ExpensesByFundCategoryChart() {
@@ -12,6 +19,8 @@ export default function ExpensesByFundCategoryChart() {
       share: string;
     }[]
   >([]);
+
+  const [year, setYear] = useState("2024");
 
   useEffect(() => {
     async function fetchData() {
@@ -42,44 +51,56 @@ export default function ExpensesByFundCategoryChart() {
     }
 
     fetchData();
-  }, []);
+  }, [year]);
 
   const currencyFormatter = (number: number) => {
     return "$" + Intl.NumberFormat("us").format(number).toString();
   };
 
   return (
-    <div className="mt-6 flex sm:flex-row flex-col">
-      <DonutChart
-        className="font-mono"
-        data={data}
-        category="expenses"
-        index="category"
-        valueFormatter={currencyFormatter}
-      />
-      <List className="mt-4 sm:mt-8">
-        {data.map((item) => (
-          <ListItem key={item.category} className="space-x-6">
-            <div className="flex items-center space-x-2.5 truncate">
-              <span
-                className={"size-2.5 shrink-0 rounded-sm"}
-                aria-hidden={true}
-              />
-              <span className="truncate dark:text-dark-tremor-content-emphasis">
-                {item.category}
-              </span>
-            </div>
-            <div className="flex items-center space-x-2">
-              <span className="font-medium tabular-nums text-tremor-content-strong dark:text-dark-tremor-content-strong">
-                {currencyFormatter(item.expenses)}
-              </span>
-              <span className="rounded-tremor-small bg-tremor-background-subtle px-1.5 py-0.5 text-tremor-label font-medium tabular-nums text-tremor-content-emphasis dark:bg-dark-tremor-background-subtle dark:text-dark-tremor-content-emphasis">
-                {item.share}%
-              </span>
-            </div>
-          </ListItem>
-        ))}
-      </List>
+    <div className="mt-6 flex sm:flex-col flex-col-reverse items-center space-y-2 sm:space-y-0">
+      <div className="w-full flex justify-end">
+        <Select>
+          <SelectTrigger id="size" className="mt-2 w-full sm:w-1/2">
+            <SelectValue placeholder={year} defaultValue={year} />
+          </SelectTrigger>
+          <SelectContent>
+            <SelectItem value="2024">2024</SelectItem>
+          </SelectContent>
+        </Select>
+      </div>
+      <div className="w-full flex flex-col sm:flex-row items-center">
+        <DonutChart
+          className="font-mono"
+          data={data}
+          category="expenses"
+          index="category"
+          valueFormatter={currencyFormatter}
+        />
+        <List className="mt-4 sm:mt-8">
+          {data.map((item) => (
+            <ListItem key={item.category} className="space-x-6">
+              <div className="flex items-center space-x-2.5 truncate">
+                <span
+                  className={"size-2.5 shrink-0 rounded-sm"}
+                  aria-hidden={true}
+                />
+                <span className="truncate dark:text-dark-tremor-content-emphasis">
+                  {item.category}
+                </span>
+              </div>
+              <div className="flex items-center space-x-2">
+                <span className="font-medium tabular-nums text-tremor-content-strong dark:text-dark-tremor-content-strong">
+                  {currencyFormatter(item.expenses)}
+                </span>
+                <span className="rounded-tremor-small bg-tremor-background-subtle px-1.5 py-0.5 text-tremor-label font-medium tabular-nums text-tremor-content-emphasis dark:bg-dark-tremor-background-subtle dark:text-dark-tremor-content-emphasis">
+                  {item.share}%
+                </span>
+              </div>
+            </ListItem>
+          ))}
+        </List>
+      </div>
     </div>
   );
 }
