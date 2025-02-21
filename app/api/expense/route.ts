@@ -3,6 +3,16 @@ import db from "@/lib/neon/db";
 import { expense } from "@/lib/neon/schema";
 
 export async function GET() {
-  const data = await db.select().from(expense);
-  return NextResponse.json(data);
+  try {
+    const data = await db.select().from(expense);
+    return NextResponse.json(data);
+  } catch (error) {
+    if (error instanceof Error) {
+      return NextResponse.json({ error: error.message }, { status: 500 });
+    }
+    return NextResponse.json(
+      { error: "An unknown error occurred." },
+      { status: 500 }
+    );
+  }
 }
