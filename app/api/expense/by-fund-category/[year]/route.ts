@@ -6,8 +6,17 @@ export async function GET(
   { params }: { params: Promise<{ year: string }> }
 ) {
   const { year } = await params;
+  try {
+    const data = await expenseByFundCategory(Number(year));
 
-  const data = await expenseByFundCategory(Number(year));
-
-  return NextResponse.json(data);
+    return NextResponse.json(data);
+  } catch (error) {
+    if (error instanceof Error) {
+      return NextResponse.json({ error: error.message }, { status: 500 });
+    }
+    return NextResponse.json(
+      { error: "An unknown error occurred." },
+      { status: 500 }
+    );
+  }
 }
