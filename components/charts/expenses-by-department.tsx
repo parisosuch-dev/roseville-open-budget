@@ -42,8 +42,6 @@ export default function ExpensesByDepartment() {
         expenses: Number(value.totalExpenses),
       }));
 
-      const sum = set.reduce((sum, item) => sum + item.expenses, 0);
-
       const finalSet = set.map((value) => ({
         name: value.department,
         value: value.expenses,
