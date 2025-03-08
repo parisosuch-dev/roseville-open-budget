@@ -1,4 +1,5 @@
 import BudgetRevenueLineChart from "@/components/charts/budget-and-revenue";
+import ExpensesByDepartment from "@/components/charts/expenses-by-department";
 import ExpensesByFundCategoryChart from "@/components/charts/expenses-by-fund-category";
 import { Card } from "@tremor/react";
 
@@ -20,6 +21,12 @@ export default async function Home() {
             Total Spending by Year
           </h2>
           <ExpensesByFundCategoryChart />
+        </Card>
+        <Card className="mt-6 sm:mt-12">
+          <h2 className="text-lg sm:text-2xl text-center font-medium font-mono">
+            Total Spending by Department
+          </h2>
+          <ExpensesByDepartment />
         </Card>
       </div>
     </div>
