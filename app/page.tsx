@@ -17,7 +17,7 @@ export default async function Home() {
         </Card>
         <Card className="mt-6 sm:mt-12">
           <h2 className="text-lg sm:text-2xl text-center font-medium font-mono">
-            Spending by Top Level Funding Category
+            Total Spending by Year
           </h2>
           <ExpensesByFundCategoryChart />
         </Card>
