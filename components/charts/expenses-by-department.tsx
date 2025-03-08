@@ -48,7 +48,6 @@ export default function ExpensesByDepartment() {
       }));
 
       setData(finalSet);
-      console.log(finalSet);
     }
 
     fetchData();
