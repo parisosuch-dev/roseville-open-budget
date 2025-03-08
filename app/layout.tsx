@@ -36,15 +36,25 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased min-h-screen flex flex-col`}
       >
         <div className="flex flex-1 h-full">{children}</div>
-        <div className="w-full flex justify-center items-center mt-8">
+        <div className="w-full flex justify-center items-center mt-8 space-x-4 sm:space-x-8">
           <p>
-            made with ❤️ by{" "}
+            Made with ❤️ by{" "}
             <a
               href="https://www.parisosuch.com"
               target="_blank"
               className="underline"
             >
               parisosuch.com
+            </a>
+          </p>
+          <p>
+            I am{" "}
+            <a
+              href="https://www.github.com/parisosuch-dev/roseville-open-budget"
+              target="_blank"
+              className="underline"
+            >
+              open source!
             </a>
           </p>
         </div>
