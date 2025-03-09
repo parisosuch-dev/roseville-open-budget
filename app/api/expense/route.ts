@@ -1,25 +1,33 @@
 import { NextRequest, NextResponse } from "next/server";
 import db from "@/lib/neon/db";
 import { expense } from "@/lib/neon/schema";
-import { eq } from "drizzle-orm";
+import { eq, and } from "drizzle-orm";
 
 export async function GET(req: NextRequest) {
   try {
     // get query params
     const params = req.nextUrl.searchParams;
 
-    const year = params.get("year") as number | null;
+    const year = params.get("year");
     const department = params.get("department");
 
-    const query = db.select().from(expense);
+    let query = db.select().from(expense);
 
-    if (year) {
-      query.where(eq(expense.fiscal_year, year));
+    if (department && year) {
+      query.where(
+        and(
+          eq(expense.department_cost_center_level, department),
+          eq(expense.fiscal_year, parseInt(year))
+        )
+      );
+    } else {
+      if (department) {
+        query.where(eq(expense.department_cost_center_level, department));
+      }
+      if (year) {
+        query.where(eq(expense.fiscal_year, parseInt(year)));
+      }
     }
-    if (department) {
-      query.where(eq(expense.department_cost_center_level, department));
-    }
-
     const data = await query;
 
     return NextResponse.json(data);
