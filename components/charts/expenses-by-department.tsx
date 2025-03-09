@@ -28,7 +28,7 @@ export default function ExpensesByDepartment() {
 
       setYears(yearData.years);
 
-      const res = await fetch(`/api/expense/by-department/${year}`);
+      const res = await fetch(`/api/expense/by-department?year=${year}`);
 
       const json: {
         department: string;
