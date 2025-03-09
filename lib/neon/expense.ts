@@ -138,14 +138,14 @@ export const expenseByDepartment = async (
 };
 
 export const expenseByCostCenter = async (
-  year?: number,
-  department?: string
+  year?: number | null,
+  department?: string | null
 ) => {
   try {
     if (year && department) {
       const result = await db
         .select({
-          fundCategory: expense.fund_category_fund_level,
+          costCenter: expense.cost_center_cost_center_level,
           fiscalYear: expense.fiscal_year,
           totalExpenses: sql<number>`SUM(${expense.adopted_budget})`,
         })
