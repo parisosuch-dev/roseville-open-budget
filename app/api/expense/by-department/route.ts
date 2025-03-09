@@ -1,9 +1,14 @@
-import { NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 import { expenseByDepartment } from "@/lib/neon/expense";
 
-export async function GET() {
+export async function GET(req: NextRequest) {
   try {
-    const data = await expenseByDepartment();
+    // get query params if present
+    const params = req.nextUrl.searchParams;
+    const year = params.get("year") as number | null;
+    const department = params.get("department");
+
+    const data = await expenseByDepartment(year, department);
 
     return NextResponse.json(data);
   } catch (error) {
