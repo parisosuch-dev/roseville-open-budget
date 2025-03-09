@@ -11,7 +11,7 @@ export async function GET(req: NextRequest) {
     const year = params.get("year");
     const department = params.get("department");
 
-    let query = db.select().from(expense);
+    const query = db.select().from(expense);
 
     if (department && year) {
       query.where(
