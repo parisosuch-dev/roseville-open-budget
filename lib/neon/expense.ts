@@ -2,6 +2,25 @@ import { expense } from "./schema";
 import db from "./db";
 import { sql, eq, and } from "drizzle-orm";
 
+export interface Expense {
+  account_category_account: string;
+  account_description: string;
+  account_type_account_level: string;
+  account_value: string;
+  adopted_budget: string;
+  amended_budget: string;
+  center_value: string;
+  cost_center_cost_center_level: string;
+  department_cost_center_level: string;
+  fiscal_year: number;
+  fund_category_fund_level: string;
+  fund_fund_level_1: string;
+  fund_group_fund_level_2: string;
+  fund_type_fund_level_3: string;
+  fund_value: string;
+  id: number;
+}
+
 export const expenseByYear = async () => {
   try {
     const result = await db
