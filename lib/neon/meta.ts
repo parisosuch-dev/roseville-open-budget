@@ -38,7 +38,12 @@ export const getDepartments = async () => {
       .groupBy(expense.department_cost_center_level)
       .orderBy(expense.department_cost_center_level);
 
-    return result;
+    const departments = [];
+    for (const res of result) {
+      departments.push(res.department);
+    }
+
+    return departments;
   } catch (error) {
     console.error("Error fetching expense years:", error);
     throw error;
