@@ -27,3 +27,20 @@ export const getExpenseYears = async () => {
     throw error;
   }
 };
+
+export const getDepartments = async () => {
+  try {
+    const result = await db
+      .select({
+        department: expense.department_cost_center_level,
+      })
+      .from(expense)
+      .groupBy(expense.department_cost_center_level)
+      .orderBy(expense.department_cost_center_level);
+
+    return result;
+  } catch (error) {
+    console.error("Error fetching expense years:", error);
+    throw error;
+  }
+};
