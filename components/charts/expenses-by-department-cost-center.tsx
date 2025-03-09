@@ -57,8 +57,6 @@ export default function ExpensesByDepartmentCostCenter() {
         value: value.expenses,
       }));
 
-      console.log(finalSet);
-
       setData(finalSet);
     }
 
