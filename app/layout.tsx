@@ -33,7 +33,7 @@ export default function RootLayout({
         />
       </head>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased min-h-screen flex flex-col`}
+        className={`${geistSans.variable} ${geistMono.variable} antialiased min-h-screen flex flex-col py-8 sm:py-4`}
       >
         <div className="flex flex-1 h-full">{children}</div>
         <div className="w-full flex justify-center items-center mt-8 space-x-4 sm:space-x-8">
